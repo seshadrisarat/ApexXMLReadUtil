@@ -3,6 +3,7 @@ XML Parser for Salesforce Apex
 
 XMLReadUtil is a simlpe utility class that provides an easy way to parse XML documents. The sample XML Doc below will be used to explain how the utility class works. 
 
+```
 --- Sample XML Doc -- 
 <Root>
   <Node id="node1">
@@ -21,53 +22,69 @@ XMLReadUtil is a simlpe utility class that provides an easy way to parse XML doc
   </Node>
   <OutsideNode id="isOut">Out</OutsideNode>
 </Root>
+```
 
 Methods available in XMLReadUtil:
 
-1) String GetValueForXMLElement(String label, HttpResponse pRes)
-    pRes = HttpResponse with a XML Doc in the Response Body
-    label = The name of the node
+1. String GetValueForXMLElement(String label, HttpResponse pRes)
+    * pRes = HttpResponse with a XML Doc in the Response Body
+    * label = The name of the node
     
-    Usage: System.assertEquals('Out', XMLReadUtil.GetValueForXMLElement('OutsideNode', res));
+    **Usage:** 
+    ```
+    System.assertEquals('Out', XMLReadUtil.GetValueForXMLElement('OutsideNode', res));
+    ```
     
-2)  String FindValueInXML(String label, Dom.XMLNode xmlNode)
-    xmlNode = XML Node / Doc
-    label = The name of the Node 
+2.  String FindValueInXML(String label, Dom.XMLNode xmlNode)
+    * xmlNode = XML Node / Doc
+    * label = The name of the Node 
     
-    Usage System.assertEquals('Out', XMLReadUtil.FindValueInXML('OutsideNode', xmlDoc));
-
-3) String GetAttributeValueForXMLElement(String label, String attribute, HttpResponse pRes) 
-    pRes = HttpResponse with a XML Doc in the Response Body
-    label = The name of the node
-    attribute = The attribute that we are searching for
+    **Usage:** 
+    ```
+    System.assertEquals('Out', XMLReadUtil.FindValueInXML('OutsideNode', xmlDoc));
+    ```
     
-    Usage System.assertEquals('isOut', XMLReadUtil.GetAttributeValueForXMLElement('OutsideNode','id', res));
+3. String GetAttributeValueForXMLElement(String label, String attribute, HttpResponse pRes) 
+    * pRes = HttpResponse with a XML Doc in the Response Body
+    * label = The name of the node
+    * attribute = The attribute that we are searching for
     
-4) String FindAttributeInXML(String label, String attribute, Dom.XMLNode xmlNode) 
-    xmlNode = XML Node / Doc
-    label = The name of the node
-    attribute = The attribute that we are searching for
+    **Usage:** 
+    ```
+    System.assertEquals('isOut', XMLReadUtil.GetAttributeValueForXMLElement('OutsideNode','id', res));
+    ```
     
-    Usage System.assertEquals('isOut', XMLReadUtil.FindAttributeInXML('OutsideNode','id', xmlNode));
+4. String FindAttributeInXML(String label, String attribute, Dom.XMLNode xmlNode) 
+    * xmlNode = XML Node / Doc
+    * label = The name of the node
+    * attribute = The attribute that we are searching for
     
-5) String FindExactValueInXML(String parentLabel, String parentAttribute, String parentAttValue, String childLabel, Dom.XMLNode xmlNode)
-    xmlNode = XML Node / Doc
-    parentLabel = the name of the parent label
-    parentAttribute = the attribute for the parent label
-    parentAttValue = the value of the attribute for the parent label
-    childLabel = the name of the node that we are looking for
+    **Usage:** 
+    ```
+    System.assertEquals('isOut', XMLReadUtil.FindAttributeInXML('OutsideNode','id', xmlNode));
+    ```
     
-    Usage System.assertEquals('N2',XMLReadUtil.FindExactValueInXML('Node','id','node2','State', xmlnode));
+5. String FindExactValueInXML(String parentLabel, String parentAttribute, String parentAttValue, String childLabel, Dom.XMLNode xmlNode)
+    * xmlNode = XML Node / Doc
+    * parentLabel = the name of the parent label
+    * parentAttribute = the attribute for the parent label
+    * parentAttValue = the value of the attribute for the parent label
+    * childLabel = the name of the node that we are looking for
     
-6) String FindExactValueInResponse(String parentLabel, String parentAttribute, String parentAttValue, String childLabel, HttpResponse res)
-    res = HttpResponse with an XML Doc in the Body
-    parentLabel = the name of the parent label
-    parentAttribute = the attribute for the parent label
-    parentAttValue = the value of the attribute for the parent label
-    childLabel = the name of the node that we are looking for
-    
-    Usage System.assertEquals('N2',XMLReadUtil.FindExactValueInResponse('Node','id','node2','State', res));
-    
+    **Usage:**
+    ```
+    System.assertEquals('N2',XMLReadUtil.FindExactValueInXML('Node','id','node2','State', xmlnode));
+    ```
+6. String FindExactValueInResponse(String parentLabel, String parentAttribute, String parentAttValue, String childLabel, HttpResponse res)
+    * res = HttpResponse with an XML Doc in the Body
+    * parentLabel = the name of the parent label
+    * parentAttribute = the attribute for the parent label
+    * parentAttValue = the value of the attribute for the parent label
+    * childLabel = the name of the node that we are looking for
+    **Usage:**
+    ```
+    System.assertEquals('N2',XMLReadUtil.FindExactValueInResponse('Node','id','node2','State', res));
+    ```
 All methods return 'N/A' if label is not found. 
     
 
